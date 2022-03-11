@@ -16,23 +16,23 @@ builds:
       - amd64
       - arm64
 
-dockers:
-  - image_templates:
-      - davidjlynn/{{.ProjectName}}:latest
-      - davidjlynn/{{.ProjectName}}:{{.Version}}
-      - davidjlynn/{{.ProjectName}}:{{.Major}}
-      - davidjlynn/{{.ProjectName}}:{{.Major}}.{{.Minor}}
-    build_flag_templates:
-      - "--pull"
-      - "--label=org.opencontainers.image.created={{.Date}}"
-      - "--label=org.opencontainers.image.title={{.ProjectName}}"
-      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version={{.Version}}"
-      - "--platform=linux/amd64"
-    extra_files:
-      - LICENSE.md
-      - README.md
-      - script/entrypoint.sh
+# dockers:
+#   - image_templates:
+#       - davidjlynn/{{.ProjectName}}:latest
+#       - davidjlynn/{{.ProjectName}}:{{.Version}}
+#       - davidjlynn/{{.ProjectName}}:{{.Major}}
+#       - davidjlynn/{{.ProjectName}}:{{.Major}}.{{.Minor}}
+#     build_flag_templates:
+#       - "--pull"
+#       - "--label=org.opencontainers.image.created={{.Date}}"
+#       - "--label=org.opencontainers.image.title={{.ProjectName}}"
+#       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+#       - "--label=org.opencontainers.image.version={{.Version}}"
+#       - "--platform=linux/amd64"
+#     extra_files:
+#       - LICENSE.md
+#       - README.md
+#       - script/entrypoint.sh
 
 checksum:
   name_template: 'checksums.txt'
