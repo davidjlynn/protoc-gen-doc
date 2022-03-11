@@ -2,6 +2,8 @@ plugins {
   id 'maven-publish'
 }
 
+group = 'io.github.davidjlynn'
+
 publishing {
 
   publications {
