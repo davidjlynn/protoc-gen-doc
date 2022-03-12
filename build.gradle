@@ -1,5 +1,6 @@
 plugins {
   id 'maven-publish'
+  id 'signing'
 }
 
 group = 'io.github.davidjlynn'
@@ -13,7 +14,7 @@ publishing {
       version = System.getenv("GITHUB_REF_NAME")
 
       pom {
-        name = 'protoc-gen-doc'
+        name = groupId + ':' + rootProject.name
         description = 'This is a documentation generator plugin for the Google Protocol Buffers compiler (protoc). The plugin can generate HTML, JSON, DocBook, and Markdown documentation from comments in your .proto files.'
         url = 'https://github.com/pseudomuto/protoc-gen-doc'
         licenses {
@@ -73,7 +74,7 @@ publishing {
     maven {
       name = "OSSRH"
       def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-      def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+      def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
       url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
       credentials {
         username = System.getenv("MAVEN_USERNAME")
@@ -81,4 +82,11 @@ publishing {
       }
     }
   }
+}
+
+signing {
+    def signingKey = findProperty("GPG_SIGNING_KEY")
+    def signingPassword = findProperty("GPG_SIGNING_PASSWORD")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign publishing.publications.maven
 }
