@@ -9,6 +9,8 @@ group = 'io.github.davidjlynn'
 // To workaround this, rename all executables to include architecture.
 tasks.register('flattenDistDirectory', Copy) {
   from("$projectDir/dist") {
+    include "**/protoc-gen-doc"
+    include "**/protoc-gen-doc.exe"
     eachFile { file ->
       file.name = file.relativePath.parent.lastName
       file.relativePath = new RelativePath(true, file.relativePath.segments.drop(1))
