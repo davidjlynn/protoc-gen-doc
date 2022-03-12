@@ -20,6 +20,7 @@ tasks.register('flattenDistDirectory', Copy) {
   into "$buildDir/dist"
 }
 publish.dependsOn flattenDistDirectory
+signMavenPublication.mustRunAfter flattenDistDirectory
 
 publishing {
   publications {
