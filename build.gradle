@@ -100,7 +100,7 @@ tasks.register('flattenDistDirectory', Copy) {
       file.name = file.relativePath.parent.lastName
       file.relativePath = new RelativePath(true, file.relativePath.segments.drop(1))
     }
-    includeEmptyDirs = false  
+    includeEmptyDirs = false
   }
   into "$buildDir/dist"
 }
